@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore the Salma dresses collection." />
+    <meta name="theme-color" content="#fbf9f6" />
+    <title>Dresses | Salma</title>
+    <link rel="icon" type="image/jpeg" href="/src/assets/icon1.webp" />
+    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/App.css" />
+    <script type="module" src="/src/account.js"></script>
+</head>
+<body>
+    <div class="app-shell dresses-page blouses-page">
+        <header class="site-header">
+            <a class="brand" href="#home" aria-label="Salma home">
+            <img src="/src/assets/logo.png" alt="Salma" />
+            </a>
+
+            <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+            >
+            <span></span>
+            <span></span>
+            <span></span>
+            </button>
+
+            <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+            <a href="./index.html">HOME</a>
+            <details class="nav-dropdown">
+                <summary>ALL PRODUCTS</summary>
+                <div class="dropdown-menu">
+                <a href="./dresses.html">DRESSES</a>
+                <a href="./sets.html">SETS</a>
+                <a href="./skirts.html">SKIRTS</a>
+                <a href="./blouses.html">BLOUSES</a>
+                <a href="./scarfs.html">SCARFS</a>
+                </div>
+            </details>
+            <details class="nav-dropdown">
+                <summary>SHOP BY WINTER COLLECTION</summary>
+                <div class="dropdown-menu">
+                <a href="./hoodies.html">HOODIES</a>
+                <a href="./coats.html">COATS</a>
+                </div>
+            </details>
+            <a href="#policy">OUR POLICY</a>
+            <a href="#about">ABOUT US</a>
+            </nav>
+
+            <div class="header-actions">
+            <button
+                class="icon-button search-toggle"
+                type="button"
+                aria-label="Search products"
+                aria-expanded="false"
+                aria-controls="search-panel"
+            >
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 5 5"></path>
+                </svg>
+            </button>
+            <button
+                class="icon-button bag-button"
+                type="button"
+                aria-label="Shopping bag, 0 items"
+                aria-expanded="false"
+                aria-controls="cart-panel"
+            >
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M5 8h14l1 13H4L5 8Z"></path>
+                <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+                </svg>
+                <span class="bag-count" aria-live="polite">0</span>
+            </button>
+            <a class="icon-button account-button" href="./login.html" aria-label="Sign in">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3.5"></circle>
+                <path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path>
+                </svg>
+            </a>
+            </div>
+
+            <div class="search-panel" id="search-panel" hidden>
+            <label for="product-search">Search the collection</label>
+            <input
+                id="product-search"
+                type="search"
+                placeholder="Try a size, color, or product..."
+            />
+            <button class="search-close" type="button">Close</button>
+            </div>
+        </header>
+
+        <div class="cart-overlay" id="cart-overlay" hidden>
+            <aside
+                class="cart-panel"
+                id="cart-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="cart-title"
+                tabindex="-1"
+            >
+                <div class="cart-panel-header">
+                    <div>
+                        <p class="eyebrow">YOUR SELECTION</p>
+                        <h2 id="cart-title">Shopping bag <span class="cart-title-count">(0)</span></h2>
+                    </div>
+                    <button class="cart-close" type="button" aria-label="Close shopping bag">&times;</button>
+                </div>
+                <p class="cart-status" role="status" aria-live="polite"></p>
+                <p class="cart-empty">Your bag is empty.</p>
+                <ul class="cart-items" aria-label="Items in your shopping bag"></ul>
+                <div class="cart-summary" hidden>
+                    <div><span>Total</span><strong class="cart-total">EGP 0</strong></div>
+                    <p class="cart-total-note" hidden>Some saved items have no price yet.</p>
+                </div>
+                <a class="cart-checkout" href="./checkout.html" hidden>CHECKOUT</a>
+            </aside>
+        </div>
+
+        <main>
+            <section class="products-section" id="products">
+            <div class="section-heading">
+                <div>
+                <p class="eyebrow">THE SALMA EDIT</p>
+                <h1>Blouses</h1>
+                </div>
+                <p>Explore the blouses collection.</p>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card" style="--card-index: 0">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse.webp" alt="Blouse" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse" data-product-name="BLOUSE" aria-label="Add Blouse to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Mesh Colored Blouse -Brown </h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1300</del>
+                        <span class="sale-price">EGP 500</span>
+                        <span class="discount-label">62% </span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 1">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse1.webp" alt="Blouse 1" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse1-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-01" data-product-name="BLOUSE 01" aria-label="Add Blouse 1 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Mixed Stripes Blouse</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1600</del>
+                        <span class="sale-price">EGP 700</span>
+                        <span class="discount-label">56% </span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 2">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse0.webp" alt="Blouse 2" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse0-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-02" data-product-name="BLOUSE 02" aria-label="Add Blouse 2 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Sophia Blouse</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1150</del>
+                        <span class="sale-price">EGP 575</span>
+                        <span class="discount-label">50%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 3">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse3-.webp" alt="Blouse 3" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse3.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-03" data-product-name="BLOUSE 3" aria-label="Add Blouse 3 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Linen Blouse</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1200</del>
+                        <span class="sale-price">EGP 750</span>
+                        <span class="discount-label">38%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 4">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse4.webp" alt="Blouse 4" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse4-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-04" data-product-name="BLOUSE 04" aria-label="Add Blouse 4 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Buttercup Blouse</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1500</del>
+                        <span class="sale-price">EGP 1000</span>
+                        <span class="discount-label">33%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 5">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse5.webp" alt="Blouse 5" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse5-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-05" data-product-name="BLOUSE 05" aria-label="Add Blouse 5 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Flounced chiffon blouse with a cotton lining</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1500</del>
+                        <span class="sale-price">EGP 1000</span>
+                        <span class="discount-label">33%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 6">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse6.webp" alt="Blouse 6" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse6-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-06" data-product-name="BLOUSE 06" aria-label="Add Blouse 6 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Balloon Broderie</h3></div>&nbsp;
+
+                    <p class="price-note">
+                        <del>EGP 1900</del>
+                        <span class="sale-price">EGP 800</span>
+                        <span class="discount-label">58%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 7">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse8.webp" alt="Blouse 7" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse8-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-07" data-product-name="BLOUSE 07" aria-label="Add Blouse 7 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Chinese Blouse</h3></div>&nbsp;
+                    <p class="price-note">
+                        <del>EGP 1950</del>
+                        <span class="sale-price">EGP 500</span>
+                        <span class="discount-label">74%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 8">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse11.webp" alt="Blouse 8" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse11-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-08" data-product-name="BLOUSE 08" aria-label="Add Blouse 8 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Taleen Blouse</h3></div>
+                    <p class="price-note">
+                        <del>EGP 1450</del>
+                        <span class="sale-price">EGP 1000</span>
+                        <span class="discount-label">74%</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 9">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse9.webp" alt="Blouse 9" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse9-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-09" data-product-name="BLOUSE 09" aria-label="Add Blouse 9 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Jory Blouse</h3></div>
+                    <p class="price-note">
+                        <del>EGP 1000</del>
+                        <span class="sale-price">EGP 700</span>
+                        <span class="discount-label">30% OFF</span>
+                    </p>
+                </div>
+                </article>
+
+                <article class="product-card" style="--card-index: 10">
+                <div class="product-image-wrap">
+                    <img class="product-image" src="/src/assets/blouse10.webp" alt="Blouse 10" loading="lazy" />
+                    <img class="product-image product-hover-image" src="/src/assets/blouse10-.webp" alt="" aria-hidden="true" loading="lazy" />
+                    <button class="quick-add" type="button" data-product-id="blouse-10" data-product-name="BLOUSE 10" aria-label="Add Blouse 10 to cart">
+                        <span class="quick-add-label">ADD TO CART</span>
+                        <span class="quick-add-icon" aria-hidden="true">+</span>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <div class="product-title-row"><h3>Budapest Blouse</h3></div>
+                    <p class="price-note">
+                        <del>EGP 1450</del>
+                        <span class="sale-price">EGP 1000</span>
+                        <span class="discount-label">74% OFF</span>
+                    </p>
+                </div>
+                </article>
+            </div>
+            </section>
+        </main>
+
+        <footer class="site-footer"><small>© 2024, SALMA</small></footer>
+        </div>
+
+    <script type="module" src="/src/blouses.js"></script>
+</body>
+</html>

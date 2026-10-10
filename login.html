@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbf9f6" />
+    <title>Sign in | Salma</title>
+    <link rel="icon" type="image/jpeg" href="/src/assets/icon1.webp" />
+    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/App.css" />
+  </head>
+  <body class="auth-page">
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="./index.html#home" aria-label="Salma home">
+          <img src="/src/assets/logo.png" alt="Salma" />
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="./index.html">HOME</a>
+        </nav>
+        <div class="header-actions">
+          <a class="auth-create-link" href="./form.html">CREATE ACCOUNT</a>
+        </div>
+      </header>
+
+      <main class="auth-main">
+        <section class="auth-card" aria-labelledby="login-title">
+          <p class="eyebrow">WELCOME BACK</p>
+          <h1 id="login-title">Sign in</h1>
+          <p class="auth-intro">Enter your email and password to continue.</p>
+
+          <form class="sign-in-form" id="login-form">
+            <div class="auth-field">
+              <label for="login-email">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+                maxlength="254"
+              />
+            </div>
+            <div class="auth-field">
+              <label for="login-password">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+                maxlength="128"
+              />
+            </div>
+            <p class="auth-message" id="login-message" role="status" aria-live="polite"></p>
+            <button class="sign-in-button" type="submit">
+              SIGN IN <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+          <p class="auth-switch">New to Salma? <a href="./form.html">Create an account</a></p>
+        </section>
+      </main>
+      <footer class="site-footer"><small>© 2024, Salma</small></footer>
+    </div>
+
+    <script type="module" src="/src/login.js"></script>
+  </body>
+</html>

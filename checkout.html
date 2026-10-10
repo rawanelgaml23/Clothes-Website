@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbf9f6" />
+    <title>Checkout | Salma</title>
+    <link rel="icon" type="image/jpeg" href="/src/assets/icon1.webp" />
+    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/App.css" />
+  </head>
+  <body class="checkout-page">
+    <main class="checkout-layout">
+      <form class="checkout-form" id="checkout-form">
+        <p class="checkout-message" id="checkout-message" role="status" aria-live="polite"></p>
+
+        <section class="checkout-section" aria-labelledby="contact-heading">
+          <div class="checkout-section-heading">
+            <h2 id="contact-heading">Contact</h2>
+            <a href="./login.html">Sign in</a>
+          </div>
+          <label class="checkout-field checkout-field-input" for="contact-email">
+            <span class="checkout-visually-hidden">Email</span>
+            <input id="contact-email" name="email" type="email" placeholder="Email or mobile phone number" autocomplete="email" required maxlength="254" />
+          </label>
+        </section>
+
+        <section class="checkout-section" aria-labelledby="delivery-heading">
+          <h2 id="delivery-heading">Delivery</h2>
+          <label class="checkout-field checkout-field-select" for="country">
+            <span>Country/Region</span>
+            <select id="country" name="country" required>
+              <option value="Egypt" selected>Egypt</option>
+            </select>
+          </label>
+          <div class="checkout-fields-row checkout-name-row">
+            <label class="checkout-field checkout-field-input" for="first-name">
+              <span class="checkout-visually-hidden">First name (optional)</span>
+              <input id="first-name" name="firstName" type="text" placeholder="First name (optional)" autocomplete="given-name" maxlength="50" />
+            </label>
+            <label class="checkout-field checkout-field-input" for="last-name">
+              <span class="checkout-visually-hidden">Last name</span>
+              <input id="last-name" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required maxlength="100" />
+            </label>
+          </div>
+          <label class="checkout-field checkout-field-input" for="address">
+            <span class="checkout-visually-hidden">Address</span>
+            <input id="address" name="address" type="text" placeholder="Address" autocomplete="street-address" required maxlength="255" />
+          </label>
+          <label class="checkout-field checkout-field-input" for="apartment">
+            <span class="checkout-visually-hidden">Apartment, suite, etc. (optional)</span>
+            <input id="apartment" name="apartment" type="text" placeholder="Apartment, suite, etc. (optional)" autocomplete="address-line2" maxlength="150" />
+          </label>
+          <div class="checkout-fields-row checkout-location-row">
+            <label class="checkout-field checkout-field-input" for="city">
+              <span class="checkout-visually-hidden">City</span>
+              <input id="city" name="city" type="text" placeholder="City" autocomplete="address-level2" required maxlength="100" />
+            </label>
+            <label class="checkout-field checkout-field-select" for="governorate">
+              <span>Governorate</span>
+              <select id="governorate" name="governorate" required>
+                <option value="">Choose</option>
+                <option>6th of October</option><option>Al Sharqia</option><option>Alexandria</option>
+                <option>Aswan</option><option>Asyut</option><option>Beheira</option><option>Beni Suef</option>
+                <option>Cairo</option><option>Dakahlia</option><option>Damietta</option><option>Faiyum</option>
+                <option>Gharbia</option><option>Giza</option><option>Helwan</option><option>Ismailia</option>
+                <option>Kafr el-Sheikh</option><option>Luxor</option><option>Matrouh</option><option>Minya</option>
+                <option>Monufia</option><option>New Valley</option><option>North Sinai</option><option>Port Said</option>
+                <option>Qalyubia</option><option>Qena</option><option>Red Sea</option><option>Sohag</option>
+                <option>South Sinai</option><option>Suez</option>
+              </select>
+            </label>
+            <label class="checkout-field checkout-field-input" for="postal-code">
+              <span class="checkout-visually-hidden">Postal code (optional)</span>
+              <input id="postal-code" name="postalCode" type="text" placeholder="Postal code (optional)" autocomplete="postal-code" maxlength="20" />
+            </label>
+          </div>
+          <label class="checkout-field checkout-field-input" for="customer-phone">
+            <span class="checkout-visually-hidden">Phone</span>
+            <input id="customer-phone" name="phone" type="tel" placeholder="Phone" autocomplete="tel" required maxlength="30" />
+          </label>
+          <label class="checkout-check">
+            <input name="saveInformation" type="checkbox" />
+            <span>Save this information for next time</span>
+          </label>
+          <label class="checkout-check">
+            <input name="marketingOptIn" type="checkbox" />
+            <span>Text me with news and offers</span>
+          </label>
+        </section>
+
+        <section class="checkout-section" aria-labelledby="shipping-heading">
+          <h2 id="shipping-heading">Shipping method</h2>
+          <div class="checkout-choice checkout-choice-muted">
+            <span>Standard</span>
+            <span id="checkout-shipping">E£100.00</span>
+          </div>
+        </section>
+
+        <section class="checkout-section" aria-labelledby="payment-heading">
+          <h2 id="payment-heading">Payment</h2>
+          <p class="checkout-hint">All transactions are secure and encrypted.</p>
+          <label class="checkout-choice">
+            <input type="radio" name="paymentMethod" value="cod" checked />
+            <span><strong>Cash on Delivery (COD)</strong><small>Pay when your order arrives.</small></span>
+          </label>
+        </section>
+
+        <section class="checkout-section" aria-labelledby="billing-heading">
+          <h2 id="billing-heading">Billing address</h2>
+          <label class="checkout-choice">
+            <input type="radio" name="billingAddress" value="same" checked />
+            <span>Same as shipping address</span>
+          </label>
+          <label class="checkout-choice">
+            <input type="radio" name="billingAddress" value="different" />
+            <span>Use a different billing address</span>
+          </label>
+          <div class="checkout-billing-fields" id="billing-fields" hidden>
+            <label class="checkout-field" for="billing-name">
+              <span>Full name</span>
+              <input id="billing-name" name="billingName" type="text" autocomplete="billing name" maxlength="100" />
+            </label>
+            <label class="checkout-field" for="billing-governorate">
+              <span>Governorate</span>
+              <select id="billing-governorate" name="billingGovernorate">
+                <option value="">Choose a governorate</option>
+                <option>6th of October</option><option>Al Sharqia</option><option>Alexandria</option>
+                <option>Aswan</option><option>Asyut</option><option>Beheira</option><option>Beni Suef</option>
+                <option>Cairo</option><option>Dakahlia</option><option>Damietta</option><option>Faiyum</option>
+                <option>Gharbia</option><option>Giza</option><option>Helwan</option><option>Ismailia</option>
+                <option>Kafr el-Sheikh</option><option>Luxor</option><option>Matrouh</option><option>Minya</option>
+                <option>Monufia</option><option>New Valley</option><option>North Sinai</option><option>Port Said</option>
+                <option>Qalyubia</option><option>Qena</option><option>Red Sea</option><option>Sohag</option>
+                <option>South Sinai</option><option>Suez</option>
+              </select>
+            </label>
+            <label class="checkout-field" for="billing-address">
+              <span>Address</span>
+              <input id="billing-address" name="billingAddressLine" type="text" autocomplete="billing street-address" maxlength="255" />
+            </label>
+            <label class="checkout-field" for="billing-city">
+              <span>City</span>
+              <input id="billing-city" name="billingCity" type="text" autocomplete="billing address-level2" maxlength="100" />
+            </label>
+          </div>
+        </section>
+
+        <button class="checkout-submit" type="submit">Submit order</button>
+      </form>
+
+      <aside class="checkout-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Order summary</h2>
+        <p class="checkout-empty" id="checkout-empty" hidden>Your shopping bag is empty. <a href="./index.html">Continue shopping</a></p>
+        <ul class="checkout-items" id="checkout-items" aria-label="Items in your order"></ul>
+        <div class="checkout-costs">
+          <div><span>Subtotal</span><strong id="checkout-subtotal">EGP 0</strong></div>
+          <div><span>Shipping</span><strong id="checkout-shipping-summary">E£100.00</strong></div>
+          <div><span>Taxes</span><strong>Calculated at checkout</strong></div>
+          <div class="checkout-estimate"><span>Total</span><strong id="checkout-total">EGP 0</strong></div>
+        </div>
+        <p class="checkout-summary-note">Cash on delivery is available for orders in Egypt.</p>
+      </aside>
+    </main>
+    <script type="module" src="/src/checkout.js"></script>
+  </body>
+</html>

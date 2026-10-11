@@ -19,16 +19,6 @@ const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env
 const dbPort = Number(process.env.DB_PORT || 3306)
 const standardShippingCostCents = 10000
 
-if (
-  !DB_HOST ||
-  !DB_USER ||
-  !DB_NAME ||
-  !/^[a-zA-Z0-9_]+$/.test(DB_NAME) ||
-  !Number.isInteger(dbPort)
-) {
-  throw new Error('Configure DB_HOST, DB_USER, and DB_NAME in D:\\Desktop\\ClothesBrand\\.env.')
-}
-
 const dbConfig = {
   host: DB_HOST,
   port: dbPort,
@@ -37,6 +27,48 @@ const dbConfig = {
   charset: 'utf8mb4',
 }
 let pool
+let poolInitialization
+
+function validateDatabaseConfig() {
+  if (
+    !DB_HOST ||
+    !DB_USER ||
+    !DB_NAME ||
+    !/^[a-zA-Z0-9_]+$/.test(DB_NAME) ||
+    !Number.isInteger(dbPort)
+  ) {
+    throw new Error('Configure DB_HOST, DB_USER, DB_NAME, and a valid DB_PORT.')
+  }
+}
+
+async function initializeServerlessPool() {
+  if (pool) return
+  if (poolInitialization) return poolInitialization
+
+  poolInitialization = (async () => {
+    validateDatabaseConfig()
+    const nextPool = mysql.createPool({
+      ...dbConfig,
+      database: DB_NAME,
+      waitForConnections: true,
+      connectionLimit: 10,
+    })
+    try {
+      await nextPool.query('SELECT 1')
+    } catch (error) {
+      await nextPool.end()
+      throw error
+    }
+    pool = nextPool
+  })()
+
+  try {
+    await poolInitialization
+  } catch (error) {
+    poolInitialization = null
+    throw error
+  }
+}
 
 const egyptGovernorates = new Set([
   '6th of October',
@@ -71,6 +103,17 @@ const egyptGovernorates = new Set([
 ])
 
 app.use(express.json({ limit: '64kb' }))
+
+if (process.env.VERCEL === '1') {
+  app.use('/api', async (_request, _response, next) => {
+    try {
+      await initializeServerlessPool()
+      next()
+    } catch (error) {
+      next(error)
+    }
+  })
+}
 
 app.get('/api/health', async (_request, response, next) => {
   try {
@@ -359,6 +402,10 @@ app.post('/api/orders', async (request, response, next) => {
   }
 })
 
+app.use('/api', (_request, response) => {
+  response.status(404).json({ message: 'API endpoint not found.' })
+})
+
 app.use((error, _request, response, _next) => {
   if (error instanceof SyntaxError && 'body' in error) {
     response.status(400).json({ message: 'Request body must be valid JSON.' })
@@ -370,6 +417,7 @@ app.use((error, _request, response, _next) => {
 })
 
 async function startServer() {
+  validateDatabaseConfig()
   const setupConnection = await mysql.createConnection(dbConfig)
   try {
     await setupConnection.query(
@@ -442,12 +490,16 @@ async function startServer() {
   })
 }
 
-startServer().catch(async (error) => {
-  if (error.code === 'ER_DBACCESS_DENIED_ERROR' || error.code === 'ER_ACCESS_DENIED_ERROR') {
-    console.error('MySQL user needs permission to create the database and users table:', error.message)
-  } else {
-    console.error('Could not connect to MySQL or initialize the database:', error)
-  }
-  if (pool) await pool.end()
-  process.exitCode = 1
-})
+if (process.env.VERCEL !== '1') {
+  startServer().catch(async (error) => {
+    if (error.code === 'ER_DBACCESS_DENIED_ERROR' || error.code === 'ER_ACCESS_DENIED_ERROR') {
+      console.error('MySQL user needs permission to create the database and users table:', error.message)
+    } else {
+      console.error('Could not connect to MySQL or initialize the database:', error)
+    }
+    if (pool) await pool.end()
+    process.exitCode = 1
+  })
+}
+
+export default app

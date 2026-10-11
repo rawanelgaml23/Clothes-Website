@@ -1,3 +1,5 @@
+import { readApiResponse } from './api-response.js'
+
 const menuButton = document.querySelector('.menu-toggle')
 const navigation = document.querySelector('.main-nav')
 const signUpForm = document.querySelector('#sign-up-form')
@@ -36,7 +38,7 @@ signUpForm.addEventListener('submit', async (event) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(Object.fromEntries(new FormData(signUpForm))),
     })
-    const result = await response.json()
+    const result = await readApiResponse(response)
 
     if (!response.ok) {
       signUpMessage.textContent = result.message || 'Unable to create the account.'
@@ -50,8 +52,8 @@ signUpForm.addEventListener('submit', async (event) => {
     window.setTimeout(() => {
       window.location.assign('./index.html')
     }, 1200)
-  } catch {
-    signUpMessage.textContent = 'Could not connect to the server. Please try again.'
+  } catch (error) {
+    signUpMessage.textContent = error.message || 'Could not connect to the server. Please try again.'
     signUpMessage.classList.add('is-error')
   } finally {
     submitButton.disabled = false

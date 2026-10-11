@@ -1,3 +1,5 @@
+import { readApiResponse } from './api-response.js'
+
 const cartStorageKey = 'salma-cart'
 const savedDetailsStorageKey = 'salma-checkout-details'
 const checkoutForm = document.querySelector('#checkout-form')
@@ -199,7 +201,7 @@ checkoutForm.addEventListener('submit', async (event) => {
         items: cart,
       }),
     })
-    const result = await response.json()
+    const result = await readApiResponse(response)
     if (!response.ok) throw new Error(result.message || 'Your order could not be placed.')
 
     try {

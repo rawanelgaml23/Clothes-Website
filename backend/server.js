@@ -447,7 +447,14 @@ app.post('/api/orders', async (request, response, next) => {
       )
     }
 
-    await connection.commit()
+        await connection.commit()
+    await sendOrderEmail({
+      orderId,
+      customer: cleanCustomer,
+      shippingAddress: cleanShippingAddress,
+      items: cleanItems,
+      total,
+    }).catch((error) => console.error('Order email failed:', error))
     response.status(201).json({ message: 'Your order has been received.', orderId, total })
   } catch (error) {
     if (connection) await connection.rollback()

@@ -106,6 +106,57 @@ const egyptGovernorates = new Set([
   'Suez',
 ])
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[char])
+}
+
+async function sendOrderEmail({ orderId, customer, shippingAddress, items, total }) {
+  const apiKey = process.env.RESEND_API_KEY
+  const to = process.env.ORDER_NOTIFY_EMAIL
+  if (!apiKey || !to) return
+
+  const itemsHtml = items
+    .map(
+      (item) =>
+        `<li>${escapeHtml(item.name)} × ${item.quantity} = ${(item.lineTotalCents / 100).toFixed(2)}</li>`,
+    )
+    .join('')
+
+  const html = `
+    <h2>طلب جديد #${escapeHtml(orderId)}</h2>
+    <p><strong>العميل:</strong> ${escapeHtml(customer.name)}</p>
+    <p><strong>الإيميل:</strong> ${escapeHtml(customer.email)}</p>
+    <p><strong>التليفون:</strong> ${escapeHtml(customer.phone)}</p>
+    <p><strong>العنوان:</strong> ${escapeHtml(shippingAddress.governorate)}, ${escapeHtml(shippingAddress.city)}, ${escapeHtml(shippingAddress.address)}${shippingAddress.apartment ? ', ' + escapeHtml(shippingAddress.apartment) : ''}</p>
+    <h3>المنتجات</h3>
+    <ul>${itemsHtml}</ul>
+    <p><strong>الإجمالي (شامل الشحن):</strong> ${total}</p>
+  `
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: 'Orders <onboarding@resend.dev>',
+      to: [to],
+      subject: `طلب جديد من ${customer.name}`,
+      html,
+    }),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Resend failed: ${response.status} ${await response.text()}`)
+  }
+}
+
+
+
+
 app.use(express.json({ limit: '64kb' }))
 
 if (process.env.VERCEL === '1') {

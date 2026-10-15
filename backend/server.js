@@ -25,6 +25,10 @@ const dbConfig = {
   user: DB_USER,
   password: DB_PASSWORD || '',
   charset: 'utf8mb4',
+  ssl: {
+    minVersion: 'TLSv1.2',
+    rejectUnauthorized: true,
+  },
 }
 let pool
 let poolInitialization
